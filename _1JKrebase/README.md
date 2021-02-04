@@ -9,4 +9,8 @@ The issue is that JK does a pull and the default setting is rebase. Attempting t
 
 # Tests
 1. Have JK clone repo, make change, have JK pull change. 
+
+2. Jessica was here 
+
 JK and I are making changes to the same line at the same time. 
+
