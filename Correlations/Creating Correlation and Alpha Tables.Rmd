@@ -1,0 +1,77 @@
+# Code written by Rubin Danberg-Biggs
+
+library(tidyverse)
+library(scales)
+library(kableExtra)
+
+qual_vars_all <- counts_v1_samp %>%
+
+  select(struct_y2, instruct_y2, process_y2)
+
+ 
+
+qual_alphas <- qual_vars_all %>%
+
+  alpha()
+
+ 
+
+qual_total <- as.tibble(qual_alphas$total)
+
+qual_alpha_raw <- as.data.frame(qual_total$raw_alpha)
+
+qual_alpha_std <- as.data.frame(qual_total$std.alpha)
+
+ 
+
+ 
+
+qual_all <- cbind(qual_alpha_raw, qual_alpha_std)
+
+ 
+
+qual_adrop <- as.tibble(qual_alphas$alpha.drop)
+
+ 
+
+qual_item_raw <- as.data.frame(qual_adrop$raw_alpha)
+
+qual_item_std <- as.data.frame(qual_adrop$std.alpha)
+
+ 
+
+ 
+
+qual_itemlist <- c("Structural Quality", "Instructional Quality", "Process Quality")
+
+ 
+
+qual_item <- cbind(qual_itemlist, qual_item_raw, qual_item_std)
+
+ 
+
+qual_vars_all %>%
+
+  cor() %>%
+
+  kable(digits=2) %>%
+
+  kable_styling(c("condensed", "hover", "scale_down"), position = "left", fixed_thead = T)
+
+ 
+
+qual_item %>%
+
+  kable(digits=2, col.names = c("Item", "Raw Alpha", "Standard Alpha")) %>%
+
+  kable_styling(c("condensed", "hover", "scale_down"), position = "left", fixed_thead = T)
+
+ 
+
+qual_vars_all %>%
+
+  cor() %>%
+
+  kable(digits=2) %>%
+
+  kable_styling(c("condensed", "hover", "scale_down"), position = "left", fixed_thead = T)
